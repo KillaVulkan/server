@@ -19123,6 +19123,14 @@ bool Player::IsImmuneToSpellEffect(SpellEntry const* spellInfo, SpellEffectIndex
     return Unit::IsImmuneToSpellEffect(spellInfo, index);
 }
 
+// .Start
+
+WorldLocation Player::GetStartPosition() const
+{
+    PlayerInfo const *info = sObjectMgr.GetPlayerInfo(getRace(), getClass());
+    uint32 mapId = info->mapId;
+    return WorldLocation(mapId, info->positionX, info->positionY, info->positionZ, 0);
+}
 uint32 Player::GetEquipGearScore(bool withBags, bool withBank)
 {
     if (withBags && withBank && m_cachedGS > 0)
